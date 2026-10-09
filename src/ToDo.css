@@ -1,0 +1,31 @@
+.ToDo{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.addTask{
+    display: flex;
+    height: 4rem;
+    gap: 1rem;
+    justify-content: center;
+}
+.addTask input, .addTask button{
+    font-size: 16px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    color: var(--accent);
+    background: var(--accent-bg);
+    margin-bottom: 24px;
+    &:focus{
+        outline: 1px solid var(--accent);
+    }
+}
+.addTask input{
+    width: 14rem;
+}
+.list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
