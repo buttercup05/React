@@ -20,6 +20,11 @@ export default function ToDo () {
             addNewTask();
         }
     }
+
+    let deleteToDo = (id) => {
+        setTodos((prevVal) => todos.filter((prevVal, index)=> index != id) );
+    }
+
     return(
         <div className="ToDo">
             <h1>ToDo App for Students</h1>
@@ -28,9 +33,14 @@ export default function ToDo () {
                 <button onClick={addNewTask}>Add Task</button>
             </div>
             <ul className="list">
+                <h3>ToDo List</h3>
                 {
                     todos.map((task, index) => (
-                        <li key={index}>{task}</li>
+                        <li key={index}>
+                            {task}
+                            &nbsp;&nbsp;
+                            <button className="counter" onClick={() => deleteToDo(index)}>Delete</button>
+                        </li>
                     ))
                 }
             </ul>
