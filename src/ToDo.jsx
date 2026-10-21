@@ -25,6 +25,13 @@ export default function ToDo () {
         setTodos((prevVal) => todos.filter((prevVal, index)=> index != id) );
     }
 
+    let upperCaseAll = () => {
+        setTodos((prevTask) => (
+            prevTask.map((todo) => {
+                return todo.toUpperCase();
+            }))
+        )
+    };
     return(
         <div className="ToDo">
             <h1>ToDo App for Students</h1>
@@ -43,6 +50,7 @@ export default function ToDo () {
                         </li>
                     ))
                 }
+                <button onClick={upperCaseAll} className="counter">UpperCase All</button>
             </ul>
         </div>
     )
