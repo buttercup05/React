@@ -32,6 +32,18 @@ export default function ToDo () {
             }))
         )
     };
+
+    let upperCaseOne = (id) => {
+        setTodos((prevTask) => (
+            prevTask.map((todo, index) => {
+                if(index === id) {
+                    return todo.toUpperCase();
+                } else {
+                    return todo;
+                }
+            }))
+        )
+    }
     return(
         <div className="ToDo">
             <h1>ToDo App for Students</h1>
@@ -47,6 +59,8 @@ export default function ToDo () {
                             {task}
                             &nbsp;&nbsp;
                             <button className="counter" onClick={() => deleteToDo(index)}>Delete</button>
+                            &nbsp;&nbsp;
+                            <button className="counter" onClick={() => upperCaseOne(index)}>Uppercase One</button>
                         </li>
                     ))
                 }
