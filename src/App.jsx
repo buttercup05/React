@@ -121,11 +121,12 @@
 import './App.css'
 import LudoBoard from "./LudoBoard";
 import ToDo from './ToDo';
+import Lottery from './Lottery';
 
 function App() {
     return(
         <>
-            <ToDo/>
+            <Lottery/>
         </>
     )
 }
