@@ -2,12 +2,12 @@ import "./ToDo.css";
 import { useState } from "react";
 
 export default function ToDo () {
-    let [todos, setTodos] = useState([]);
+    let [todos, setTodos] = useState([{ task: "sample-task", isDone : false }]);
     let [newTodo, setNewTodo] = useState("");
     let addNewTask = (event) => {
         if(newTodo.trim() === "") return;
 
-        setTodos([...todos, newTodo]);
+        setTodos((prev) => [...prev, {task: newTodo, isDone : false}]);
         setNewTodo("");
     }
 
@@ -28,7 +28,7 @@ export default function ToDo () {
     let upperCaseAll = () => {
         setTodos((prevTask) => (
             prevTask.map((todo) => {
-                return todo.toUpperCase();
+                return {...todo, task: todo.task.toUpperCase()};
             }))
         )
     };
@@ -37,13 +37,34 @@ export default function ToDo () {
         setTodos((prevTask) => (
             prevTask.map((todo, index) => {
                 if(index === id) {
-                    return todo.toUpperCase();
+                    return {...todo, task:todo.task.toUpperCase()}
                 } else {
                     return todo;
                 }
             }))
         )
     }
+
+    let markAllDone = () => {
+        setTodos((prevTask) => (
+            prevTask.map((todo) => {
+                return {...todo, isDone: true};
+            }))
+        )
+    };
+
+    let markAsDone = (id) => {
+        setTodos((prevTask) => (
+            prevTask.map((todo, index) => {
+                if(index === id) {
+                    return { ...todo, isDone: true};
+                } else {
+                    return todo;
+                }
+            })
+        ))
+    }
+
     return(
         <div className="ToDo">
             <h1>ToDo App for Students</h1>
@@ -51,21 +72,25 @@ export default function ToDo () {
                 <input type="text" placeholder="Task for Today..." value={newTodo} onChange={updateTodoValue} onKeyDown={handleKeyDown}/>
                 <button onClick={addNewTask}>Add Task</button>
             </div>
+            <h3>ToDo List</h3>
             <ul className="list">
-                <h3>ToDo List</h3>
                 {
-                    todos.map((task, index) => (
-                        <li key={index}>
-                            {task}
+                    todos.map((todo, index) => (
+                        <li key={index} style={todo.isDone ? {textDecorationLine : "line-through"} : { } }>
+                            {todo.task}
                             &nbsp;&nbsp;
                             <button className="counter" onClick={() => deleteToDo(index)}>Delete</button>
                             &nbsp;&nbsp;
-                            <button className="counter" onClick={() => upperCaseOne(index)}>Uppercase One</button>
+                            {/* <button className="counter" onClick={() => upperCaseOne(index)}>Uppercase One</button> */}
+                            <button className="counter" onClick={() => markAsDone(index)}>Mark as done</button>
                         </li>
                     ))
                 }
-                <button onClick={upperCaseAll} className="counter">UpperCase All</button>
             </ul>
+            <div>
+                {/* <button onClick={upperCaseAll} className="counter">UpperCase All</button> */}
+                <button onClick={markAllDone} className="counter">Mark All as Done</button>
+            </div>
         </div>
     )
 }
