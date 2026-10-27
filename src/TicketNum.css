@@ -1,0 +1,5 @@
+.TicketNum{
+    font-size: 40px;
+    color: var(--accent);
+    padding-inline: 12px;
+}
