@@ -122,11 +122,17 @@ import './App.css'
 import LudoBoard from "./LudoBoard";
 import ToDo from './ToDo';
 import Lottery from './Lottery';
+import {ticketSum} from './helper.js';
 
 function App() {
+    let winCondition = (ticket) => {
+        // return ticketSum(ticket) === 15;            for condition when sum of the digits should be 15.
+        return ticket.every((num) => num === ticket[0]); //for condition when every digit should be same.
+    }
+
     return(
         <>
-            <Lottery n={3} winningSum={15}/>
+            <Lottery n={3} winCondition={winCondition}/>
         </>
     )
 }
