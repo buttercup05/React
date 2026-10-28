@@ -123,6 +123,7 @@ import LudoBoard from "./LudoBoard";
 import ToDo from './ToDo';
 import Lottery from './Lottery';
 import {ticketSum} from './helper.js';
+import Form from './Form.jsx';
 
 function App() {
     let winCondition = (ticket) => {
@@ -132,7 +133,8 @@ function App() {
 
     return(
         <>
-            <Lottery n={3} winCondition={winCondition}/>
+            {/* <Lottery n={3} winCondition={winCondition}/> */}
+            <Form/>
         </>
     )
 }
